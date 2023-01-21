@@ -5,6 +5,8 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.json());
+
 // on modifie la valeur de la variable port initialement 5000
 const port = process.env.APP_PORT ?? 5000;
 
@@ -22,15 +24,16 @@ const movieHandlers = require("./movieHandlers");
 // -> les routes
 app.get("/api/movies", movieHandlers.getMovies);
 app.get("/api/movies/:id", movieHandlers.getMovieById);
-
+app.post("/api/movies", movieHandlers.postMovie);
 
 //users
 // -> la fonction handler
 const userHandlers = require("./userHandlers");
 
-//-> les toutes
+//-> les routes
 app.get("/api/users", userHandlers.getUsers);
 app.get("/api/users/:id", userHandlers.getUsersById);
+app.post("/api/users", userHandlers.postUser);
 
 
 app.listen(port, (err) => {
