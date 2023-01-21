@@ -39,6 +39,7 @@ const getMovies = (req, res) => {
     });
 };
 
+
 const getMovieById = (req, res) => {
   const id = parseInt(req.params.id);
 
