@@ -5,15 +5,15 @@ const getUsers = (req, res) => {
     const sqlValues = [];
 
     if (req.query.language != null) {
-        sql += " where language = ?";
+        sql += " WHERE language = ?";
         sqlValues.push(req.query.language);
 
         if (req.query.city != null) {
-            sql += " and city = ?";
+            sql += " AND city = ?";
             sqlValues.push(req.query.city);
         }
     } else if (req.query.city) {
-        sql += " where city = ?";
+        sql += " WHERE city = ?";
         sqlValues.push(req.query.city);
     }
 
