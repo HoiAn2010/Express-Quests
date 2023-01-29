@@ -5,6 +5,8 @@ const express = require("express");
 
 const app = express();
 
+
+
 app.use(express.json());
 
 // on modifie la valeur de la variable port initialement 5000
@@ -31,13 +33,17 @@ app.delete("/api/movies/:id", movieHandlers.deleteMovie);
 //users
 // -> la fonction handler
 const userHandlers = require("./userHandlers");
+//middleware de hashage pour mot de passe
+const { hashPassword } = require("./auth.js");
 
 //-> les routes
 app.get("/api/users", userHandlers.getUsers);
 app.get("/api/users/:id", userHandlers.getUsersById);
-app.post("/api/users", userHandlers.postUser);
-app.put("/api/users/:id", userHandlers.updateUser);
+app.post("/api/users", hashPassword, userHandlers.postUser);
+app.put("/api/users/:id", hashPassword, userHandlers.updateUser);
 app.delete("/api/users/:id", userHandlers.deleteUser);
+
+
 
 app.listen(port, (err) => {
   if (err) {
