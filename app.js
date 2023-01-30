@@ -5,8 +5,6 @@ const express = require("express");
 
 const app = express();
 
-
-
 app.use(express.json());
 
 // on modifie la valeur de la variable port initialement 5000
